@@ -4,6 +4,13 @@ import { Stack, Slot } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import useThemedNavigation from '@/hooks/useThemedNavigation';
 import { ThemeProvider } from '@/contexts/ThemeContext';
+import {
+  useFonts,
+  Inter_500Medium,
+  Inter_600SemiBold,
+} from '@expo-google-fonts/inter';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 
 export {
@@ -33,24 +40,37 @@ function ThemedLayout() {
 export default function RootLayout() {
   const [isReady, setIsReady] = useState(false);
 
-   useEffect(() => {
-    const prepare = async () => {
-      // You can load fonts, run async setup here
-      await new Promise(resolve => setTimeout(resolve, 500)); // Simulate loading
-      setIsReady(true);
-      await SplashScreen.hideAsync();
-    };
+    const [fontsLoaded] = useFonts({
+    Inter_500Medium,
+    Inter_600SemiBold,
+  });
 
+  useEffect(() => {
+    const prepare = async () => {
+      if (fontsLoaded) {
+        setIsReady(true);
+        await SplashScreen.hideAsync();
+      }
+    };
     prepare();
-  }, []);
+  }, [fontsLoaded]);
 
   if (!isReady) return null; // Keep splash showing
 
   return (
 
+    <GestureHandlerRootView style={{ flex: 1 }}>
+
+      <SafeAreaProvider>
+
         <ThemeProvider>
             <ThemedLayout />
         </ThemeProvider>
+
+
+      </SafeAreaProvider>
+
+    </GestureHandlerRootView>
 
   );
 }
