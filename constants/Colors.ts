@@ -1,19 +1,16 @@
-const tintColorLight = '#2f95dc';
-const tintColorDark = '#fff';
+import { useTheme } from "@/contexts/ThemeContext";
 
-export default {
-  light: {
-    text: '#000',
-    background: '#fff',
-    tint: tintColorLight,
-    tabIconDefault: '#ccc',
-    tabIconSelected: tintColorLight,
-  },
-  dark: {
-    text: '#fff',
-    background: '#000',
-    tint: tintColorDark,
-    tabIconDefault: '#ccc',
-    tabIconSelected: tintColorDark,
-  },
+
+export const useThemeColors = () => {
+  const { isDark } = useTheme();
+
+  return {
+    icon: isDark ? 'white' : 'black',
+    bg: isDark ? '#171717' : '#ffffff',
+    invert: isDark ? '#000000' : '#ffffff',
+    secondary: isDark ? '#323232' : '#F5F5F5',
+    gradient: isDark ? ['#222', '#444'] : ['#efefef', '#ffffff'],
+  };
 };
+
+export default useThemeColors;
