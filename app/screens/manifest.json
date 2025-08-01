@@ -1,0 +1,15 @@
+{
+  "short_name": "mobile-playground",
+  "name": "mobile-playground",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/assests/images/damola.svg",
+      "sizes": "192x192",
+      "type": "image/svg"
+    }
+  ]
+}
