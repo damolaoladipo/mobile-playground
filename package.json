@@ -2,6 +2,7 @@
   "name": "expo-playground",
   "main": "expo-router/entry",
   "version": "1.0.0",
+  "homepage":"https://mobile-playground.vercel.app",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
